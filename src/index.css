@@ -1,6 +1,3 @@
-/* Import custom theme styles */
-@import './theme/customStyles.css';
-
 * {
   box-sizing: border-box;
 }
