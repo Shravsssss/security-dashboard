@@ -3,6 +3,8 @@
  * This prevents UI blocking when sorting large datasets (236K+ records)
  */
 
+/* eslint-disable no-restricted-globals */
+
 // Define types inline to avoid import issues in worker context
 interface VulnerabilityData {
   id: string;
