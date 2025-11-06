@@ -1,46 +1,140 @@
-# Getting Started with Create React App
+# Security Vulnerability Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A high-performance React TypeScript application for visualizing and analyzing security vulnerabilities from large datasets (300MB+, up to 1M rows).
 
-## Available Scripts
+## 📖 Documentation
 
-In the project directory, you can run:
+**[View Full Documentation →](docs/index.md)**
 
-### `npm start`
+- [Getting Started Guide](docs/getting-started.md) - Installation and setup
+- [Architecture Overview](docs/architecture.md) - System design and patterns
+- [Component Docs](docs/components/dashboard.md) - Detailed component reference
+- [Performance Guide](docs/performance.md) - Optimization techniques
+- [Troubleshooting](docs/troubleshooting.md) - Common issues and solutions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Core Functionality
+- **Dashboard View**: Overview with metrics, visualizations, and KAI status breakdown
+  - Customizable dashboard settings (toggle charts, change themes)
+  - Real-time metrics display
+  - Analysis and AI Analysis filtering buttons
+- **Virtualized List**: Efficiently displays large datasets (1M+ rows) using react-window
+- **Advanced Filtering**:
+  - Analysis button - Excludes "invalid - norisk" vulnerabilities
+  - AI Analysis button - Excludes "ai-invalid-norisk" vulnerabilities
+  - Search by package name, CVE, description
+  - Filter by severity levels (Critical, High, Medium, Low)
+- **8 Interactive Visualizations**:
+  - Risk Scoring Dashboard - Comprehensive risk metrics
+  - Severity Distribution - Pie chart showing vulnerability breakdown
+  - Risk Factors Frequency - Bar chart of top risk factors
+  - Trend Analysis - Time-series vulnerability trends
+  - Package × Severity Heatmap - Heat map of packages vs severity
+  - Dependency Network Graph - D3.js interactive network visualization
+  - AI vs Manual Comparison - Comparison of AI and manual detection
+  - Top Critical Vulnerabilities - Table of most critical issues
+- **Comparison View**: Side-by-side comparison of multiple vulnerabilities
+- **Export Functionality**: Export filtered data as CSV or JSON
 
-### `npm test`
+### Performance Optimizations
+- **React Query**: Intelligent data caching and state management
+- **Virtual Scrolling**: Only renders visible rows for optimal performance
+- **Lazy Loading**: Code splitting for faster initial load
+- **Debounced Search**: Prevents excessive re-renders during typing
+- **Memoization**: Optimized re-rendering with useMemo and memo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+- **React 19.2.0** with TypeScript 4.9.5
+- **React Router 7.9.5** for navigation
+- **React Query 5.90.6** (@tanstack/react-query) for state management and caching
+- **Material-UI 7.3.4** (@mui/material) for UI components
+- **Recharts 3.3.0** for charts and data visualization
+- **D3.js 7.9.0** for interactive network graphs
+- **react-window 2.2.2** for virtual scrolling
+- **Axios 1.13.1** for HTTP requests
+- **Lodash 4.17.21** for utility functions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+- Node.js 18+ and npm (required for React 19)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+Dependencies are already installed. If needed:
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Running the Application
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Start the development server:
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The application will open at [http://localhost:3000](http://localhost:3000)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Building for Production
 
-## Learn More
+Create an optimized production build:
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+├── components/
+│   ├── Dashboard/              # Dashboard components & settings
+│   ├── Visualizations/         # 8 interactive charts and graphs
+│   ├── VulnerabilityList/      # Virtualized table & detail view
+│   ├── SearchFilter/           # Search and filter UI
+│   └── Comparison/             # Comparison feature
+├── context/                    # React context providers
+│   ├── VulnerabilityContext.tsx
+│   └── DashboardSettingsContext.tsx
+├── utils/                      # Utility functions (CVSS, export, etc.)
+├── hooks/                      # Custom React hooks
+├── workers/                    # Web workers for performance
+├── constants/                  # App constants (severity levels, etc.)
+├── types/                      # TypeScript definitions
+└── App.tsx                     # Main app with routing
+```
+
+## Usage Guide
+
+### Dashboard Tab
+- View overall metrics and statistics
+- Click **Analysis** button to exclude "invalid - norisk" vulnerabilities
+- Click **AI Analysis** button to exclude "ai-invalid-norisk" vulnerabilities
+- View visual charts for severity distribution and risk factors
+
+### Vulnerability List Tab
+- Search for specific vulnerabilities
+- Filter by severity
+- Click any row for details
+- Export as CSV or JSON
+
+### Compare Tab
+- Add vulnerabilities for side-by-side comparison
+- View detailed comparisons
+- Remove items or clear all
+
+## Data Source
+
+Loads from: `https://raw.githubusercontent.com/chanduusc/Ui-Demo-Data/main/ui_demo.json`
+
+## Performance Notes
+
+- Initial load: 10-30 seconds for large datasets
+- Data cached after first load
+- Virtual scrolling for optimal rendering
+- Debounced search with 300ms delay
+
+## Browser Support
+
+Chrome, Firefox, Safari, Edge (latest versions)
