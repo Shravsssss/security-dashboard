@@ -2,6 +2,8 @@
 
 A high-performance React TypeScript application for visualizing and analyzing security vulnerabilities from large datasets (300MB+, up to 1M rows).
 
+Application deployed at https://security-dashboard-alpha.vercel.app/
+
 ## 📖 Documentation
 
 **[View Full Documentation →](docs/index.md)**
